@@ -11,16 +11,18 @@ mongoose.connect(config.database);
 
 // On Connection
 mongoose.connection.on('connected', () => {
-  console.log('Connected to database '+config.database);
+  console.log('Connected to database '+ config.database);
 });
 
 // On Error
 mongoose.connection.on('error', (err) => {
-  console.log('Database error: '+err);
+  console.log('Database error: '+ err);
 });
 
+// Connect to Express Server
 const app = express();
 
+// Check routes/users for what users have and can do
 const users = require('./routes/users');
 
 // Port Number
