@@ -1,3 +1,44 @@
-<p>
-  Registerrrrrrr
-</p>
+<div class="register-container bg-secondary">
+  <div class="register-form-container">
+    <div class="alert-container">
+      <ngb-alert *ngIf="registerSuccess" type="success">Register Success!</ngb-alert>
+      <ngb-alert *ngIf="registerFailure" (close)="registerFailure = false"
+                 type="danger">{{registrationFailureMessage}}</ngb-alert>
+    </div>
+    <form #registerForm="ngForm">
+      <div class="form-group row">
+        <label for="name">Your Full Name</label>
+        <input type="text" class="form-control" id="name" [required]="true"
+               [(ngModel)]="registrationInfo.name" minlength="1" name="name">
+      </div>
+      <div class="form-group row">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+               placeholder="bob@gatech.edu" [(ngModel)]="registrationInfo.email" [required]="true" minlength="3"
+               name="email">
+        <small id="emailHelp" class="form-text text-muted">Enter a .edu institutional email address.</small>
+      </div>
+      <div class="form-group row">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" [required]="true"
+               [(ngModel)]="registrationInfo.username" minlength="1" name="username">
+      </div>
+      <div class="form-group row">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" [required]="true"
+               [(ngModel)]="registrationInfo.password" minlength="1" name="password">
+      </div>
+      <div class="form-group row">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password"
+               [required]="true" [(ngModel)]="confirmPass" minlength="1" name="confirm-password">
+      </div>
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary" (click)="onRegister()" [disabled]="!registerForm.form.valid">
+          Register
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

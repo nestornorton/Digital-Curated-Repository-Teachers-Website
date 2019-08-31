@@ -1,22 +1,25 @@
 <div class="login-container bg-secondary">
   <div class="login-form-container">
-    <form>
+    <div class="alert-container">
+      <ngb-alert *ngIf="loginSuccess" type="success">Login Success!</ngb-alert>
+      <ngb-alert *ngIf="loginFailure" (close)="loginFailure = false" type="danger">{{loginFailureMessage}}</ngb-alert>
+    </div>
+    <form #loginForm="ngForm">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-               placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">Please Enter a .edu institutional email address.</small>
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+               placeholder="Enter Username" [(ngModel)]="credentials.username" [required]="true" minlength="3"
+               name="username">
+        <small id="usernameHelp" class="form-text text-muted">Please Enter your username</small>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" [required]="true"
+               [(ngModel)]="credentials.password" minlength="1" name="password">
       </div>
-      <!--<div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>-->
       <div class="button-container">
-      <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" (click)="login()" [disabled]="!loginForm.form.valid">Login
+        </button>
       </div>
     </form>
   </div>
