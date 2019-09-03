@@ -1,0 +1,16 @@
+<div>
+    <button (click)="add()">Add</button>
+</div>
+<div id="content">
+    <div id="contentInside" *ngFor="let container of containers">
+        <div id="embedded">
+                <!-- <input type="file" (change) = "onFileSelected($event)"> -->
+            <span style="color:red;" *ngIf="message">{{message}}</span>
+            <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
+            <img [src]="imageURL" height="200" *ngIf="imageURL">
+        </div>
+        <div id="texts">
+            hello
+        </div>
+    </div>
+</div>
