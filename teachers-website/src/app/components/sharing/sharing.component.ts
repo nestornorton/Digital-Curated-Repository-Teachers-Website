@@ -8,14 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharingComponent implements OnInit {
 
-  onFileSelected(event) {
-    console.log(event);
-  }
-
   containers = [];
   private id: string;
+  pdfId: string = '';
   constructor() { }
-  private youtube
+  
 
   ngOnInit() {
   }
@@ -47,7 +44,7 @@ export class SharingComponent implements OnInit {
     }
   }
   
-  //Embed Youtube video
+  //For embedding Youtube video
   submitVideo(num1) {
     this.id = num1.split("v=")[1].substring(0,11);
     console.log(this.id);
@@ -62,6 +59,18 @@ export class SharingComponent implements OnInit {
   }
   onStateChange(event) {
     // console.log('player state', event.data);
+  }
+
+  //For embedding PDF
+  previewPDF() {
+    let img: any = document.querySelector("#file");
+    if(typeof (FileReader) !== 'undefined') {
+      let reader = new FileReader();
+      reader.onload = (e:any) => {
+        this.pdfId = e.target.result;
+      }
+      reader.readAsArrayBuffer(img.files[0]);
+    }
   }
 
 }

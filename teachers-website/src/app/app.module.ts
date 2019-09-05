@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 import { AppComponent } from './app.component';
@@ -33,7 +34,8 @@ import { SharingComponent } from './components/sharing/sharing.component';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    NgxYoutubePlayerModule.forRoot()
+    NgxYoutubePlayerModule.forRoot(),
+    PdfViewerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

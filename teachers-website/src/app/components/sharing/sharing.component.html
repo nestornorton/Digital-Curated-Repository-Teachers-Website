@@ -4,11 +4,12 @@
 <div id="content">
     <div id="contentInside" *ngFor="let container of containers">
         <div id="embedded">
-                <!-- <input type="file" (change) = "onFileSelected($event)"> -->
+            <!-- Image -->
             <span style="color:red;" *ngIf="message">{{message}}</span>
             <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
             <img [src]="imageURL" height="200" *ngIf="imageURL">
 
+            <!-- Video -->
             <div>
                 Youtube Video ID: <input type="text" [(ngModel)]="videoId" />
                 <button (click)="submitVideo(videoId)" >Submit</button>
@@ -22,7 +23,23 @@
                     [playerVars]="playerVars">
                 </youtube-player>
             </div>
-            
+
+            <!-- PDF -->
+            <div>
+                    <label> Search PDF </label>
+                    <input (change)="previewPDF()" type="file" id="file">
+                    <input [(ngModel)]="page" type="text" id="page">
+            </div>
+            <div>
+                <pdf-viewer [src]="pdfId"
+                    [render-text]="true"
+                    [page]="page" 
+                    [show-all]="false"
+                    style="display: block;">
+                </pdf-viewer>
+            </div>
+                  
+
         </div>
         <div id="texts">
                 Text
