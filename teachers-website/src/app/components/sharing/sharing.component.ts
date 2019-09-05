@@ -13,7 +13,9 @@ export class SharingComponent implements OnInit {
   }
 
   containers = [];
+  private id: string;
   constructor() { }
+  private youtube
 
   ngOnInit() {
   }
@@ -43,6 +45,23 @@ export class SharingComponent implements OnInit {
     reader.onload = (_event) => { 
       this.imageURL = reader.result; 
     }
+  }
+  
+  //Embed Youtube video
+  submitVideo(num1) {
+    this.id = num1.split("v=")[1].substring(0,11);
+    console.log(this.id);
+  }
+  player: YT.Player;
+  // private x: string = "https://www.youtube.com/watch?v=EDx1RIqRj-g&list=RDEDx1RIqRj-g&start_radio=1";
+  // private vid_regex: string = "/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/";
+  
+  savePlayer(player) {
+    this.player = player;
+    // console.log('player instance', player);
+  }
+  onStateChange(event) {
+    // console.log('player state', event.data);
   }
 
 }

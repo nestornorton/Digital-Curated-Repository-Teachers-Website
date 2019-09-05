@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 
 
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { SharingComponent } from './components/sharing/sharing.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgxYoutubePlayerModule.forRoot()
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

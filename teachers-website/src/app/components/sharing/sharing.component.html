@@ -8,9 +8,25 @@
             <span style="color:red;" *ngIf="message">{{message}}</span>
             <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
             <img [src]="imageURL" height="200" *ngIf="imageURL">
+
+            <div>
+                Youtube Video ID: <input type="text" [(ngModel)]="videoId" />
+                <button (click)="submitVideo(videoId)" >Submit</button>
+            </div>
+            
+            <div id="youtubeContainer" [hidden]="id == null">
+                <youtube-player *ngIf="id != null"
+                    [videoId]="id"
+                    (ready)="savePlayer($event)"
+                    (change)="onStateChange($event)"
+                    [playerVars]="playerVars">
+                </youtube-player>
+            </div>
+            
         </div>
         <div id="texts">
-            hello
+                Text
+                <input type="text" />
         </div>
     </div>
 </div>
