@@ -1,0 +1,25 @@
+
+#contentInside{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:1000px;
+    height:500px;
+    border:1px solid black;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+}
+#texts{
+    border:1px solid black;
+    width:500px;
+    height:450px;
+    margin: 10px;
+}
+#embedded{
+    border:1px solid black;
+    width:500px;
+    height:450px;
+    margin: 10px;
+}

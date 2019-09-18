@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UserService} from './services/user-service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SharingComponent } from './components/sharing/sharing.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,17 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    SharingComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    NgxYoutubePlayerModule.forRoot(),
+    PdfViewerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
