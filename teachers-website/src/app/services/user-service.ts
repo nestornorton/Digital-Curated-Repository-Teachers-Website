@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Credentials} from "../DomainModels/credentials";
+import {Credentials} from '../DomainModels/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,9 @@ export class UserService {
   }
 
   /* Store the logged in username in this service for later usage */
-  public storeLoggedInUsername(username: any) {
+  public async storeLoggedInUsername(username: any) {
     this.loggedInUsername = username;
+    console.log('saved userID: ', this.loggedInUsername);
   }
 
   /* Retrieve the username of user that is logged in */

@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
           this.loginFailure = false;
           this.loginSuccess = true;
 
-          /* Store the username in the angular service for later usage */
-          this.userService.storeLoggedInUsername(this.credentials.username);
-
-          /* navigate to Home Page on successful registration, delay by one sec and half */
-          setTimeout(() => {
-            this.router.navigate(['/Home']);
-          }, 1500);
+          /* Store the username in the angular service for later usage, then navigate to home page */
+          this.userService.storeLoggedInUsername(this.credentials.username).then(() => {
+            /* navigate to Home Page on successful registration, delay by one sec and half */
+            setTimeout(() => {
+              this.router.navigate(['/Home']);
+            }, 1500);
+          });
         } else {
           this.loginFailure = true;
           this.loginFailureMessage = 'Invalid Credentials';

@@ -21,7 +21,9 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
+// import users and postContent modules
 const users = require('./routes/users');
+const posts = require('./routes/post');
 
 // Port Number
 const port = 3000;
@@ -41,7 +43,9 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
+// use users and postContent defined routes
 app.use('/users', users);
+app.use('/posts', posts);
 
 // Index Route
 app.get('/', (req, res) => {

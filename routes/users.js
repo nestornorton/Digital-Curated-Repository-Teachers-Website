@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
+const Content = require('../models/posts');
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -74,5 +75,9 @@ router.post('/authenticate', (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
 });
+
+
+
+
 
 module.exports = router;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PostsContentService} from '../../services/posts-content.service';
 
 
 @Component({
@@ -8,69 +9,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SharingComponent implements OnInit {
 
+  constructor(private postContentService: PostsContentService) {
+  }
+
   containers = [];
   private id: string;
   pdfId: string = '';
-  constructor() { }
-  
+
+  // For embedding an image
+  public imagePath;
+  imageURL: any;
+  public message: string;
+
+  player: YT.Player;
+
 
   ngOnInit() {
   }
-  //Adding another content
+
+  // Adding another content
   add() {
     this.containers.push(this.containers.length);
   }
 
-  //For embedding an image
-  public imagePath;
-  imageURL: any;
-  public message: string;
- 
   previewImage(files) {
     if (files.length === 0)
       return;
- 
-    var mimeType = files[0].type;
+
+    const mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
+      this.message = 'Only images are supported.';
       return;
     }
- 
-    var reader = new FileReader();
+
+    const reader = new FileReader();
     this.imagePath = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.imageURL = reader.result; 
-    }
+    reader.readAsDataURL(files[0]);
+    reader.onload = (event) => {
+      this.imageURL = reader.result;
+    };
   }
-  
-  //For embedding Youtube video
+
+  // For embedding Youtube video
   submitVideo(num1) {
-    this.id = num1.split("v=")[1].substring(0,11);
+    this.id = num1.split('v=')[1].substring(0, 11);
     console.log(this.id);
   }
-  player: YT.Player;
+
   // private x: string = "https://www.youtube.com/watch?v=EDx1RIqRj-g&list=RDEDx1RIqRj-g&start_radio=1";
-  // private vid_regex: string = "/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/";
-  
+  // private vid_regex: string = "/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)
+  // |youtu\.be\/)([a-zA-Z0-9_-]{11})/";
+
   savePlayer(player) {
     this.player = player;
     // console.log('player instance', player);
   }
+
   onStateChange(event) {
     // console.log('player state', event.data);
   }
 
-  //For embedding PDF
+  // For embedding PDF
   previewPDF() {
-    let img: any = document.querySelector("#file");
-    if(typeof (FileReader) !== 'undefined') {
-      let reader = new FileReader();
-      reader.onload = (e:any) => {
+    const img: any = document.querySelector('#file');
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
         this.pdfId = e.target.result;
-      }
+      };
       reader.readAsArrayBuffer(img.files[0]);
     }
   }
 
+  public addPost() {
+    // for now, just hit this endpoint to make sure it works in console output
+    this.postContentService.addPost('');
+  }
 }
