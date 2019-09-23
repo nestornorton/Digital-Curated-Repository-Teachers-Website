@@ -13,6 +13,8 @@ const postSchema = mongoose.Schema({
             userMediaTitle: String,
             // the user description of the media (user's written description of the pdf, doc, etc)
             userMediaDescription: String,
+            // the originating author of this media
+            authorUserID: String
         }],
     // corresponding user ID who made the post
     post_userID: {
