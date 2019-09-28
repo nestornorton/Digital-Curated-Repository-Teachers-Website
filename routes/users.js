@@ -77,7 +77,29 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 });
 
 
+/* Stores a Post's Object ID in the User's content[] array
+* request must contain unique username of user  */
+router.post('/storePostID', (req, res, next) => {
+    console.log('received request for storing a Post Obj ID: ', req.body);
+    User.addPostID(req.body.userID, req.body.ObjID, function (error, User) {
+        if (error) {
+            console.log('error adding Post ID: ', error);
+            res.json({status: 'error', message: error})
+        } else {
+            console.log('Success adding Post ID: ', User);
+            res.json({status: 'success', message: 'Post added to User', post: User})
+        }
+    });
+});
 
+
+/* Retrieve the list of Posts Object IDs
+* request must contain unique username of user
+* GET request contains username as query parameter in URL (syntax ':' to denote query param) */
+router.get('/getPostIDs/:username', (req, res, next) => {
+    console.log('received request for getting User Post IDs: ', req);
+    console.log('query', req.query);
+});
 
 
 module.exports = router;

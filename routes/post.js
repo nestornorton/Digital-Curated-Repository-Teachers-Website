@@ -67,7 +67,12 @@ router.post('/addPostWithContent', (req, res, next) => {
     // add the post object document to the posts collection in mongodb and return Object ID of the post to sender
     newPost.save().then(function (returnedPost) {
         console.log('saved Post:', returnedPost);
-        res.json({status: 'success', message: 'Success adding post with non-empty content', post_id: returnedPost._id});
+        res.json({
+            status: 'success',
+            message: 'Success adding post with non-empty content',
+            post_id: returnedPost._id,
+            post: returnedPost
+        });
     }).catch(function (error) {
         console.log('error received', error);
         res.json({status: 'error', message: 'Error adding post with non-empty content'});
@@ -83,6 +88,10 @@ router.post('/addPostWithContent', (req, res, next) => {
     - userMediaTitle: of the media content
     - userMediaDescription: of the media content
     - authorUserID: the originating author of this media
+ * Response body returned:
+    - error if present
+    - if no error, then the saved Post
+    - the post Object ID
 */
 router.post('/addContentMedia', (req, res, next) => {
     console.log('received request to add content to saved post content[] array', req.body);
@@ -104,21 +113,29 @@ router.post('/addContentMedia', (req, res, next) => {
         authorUserID: authorUserID
     };
 
-    // todo: index into post with postObjID and add to content array
+    // index into post with postObjID and add to content array
     // using Post Model, find the corresponding post object
     Post.findOne({'_id': postObjID}, '', function (err, post) {
         if (err) return res.json({status: 'error', message: err});
         console.log('returned Post from mongoDB: ', post);
 
         // add content to post's content[] array by using $push operator
-        post.update({$push: {content: contentObj}}, function (error, success) {
+        post.update({$push: {content: contentObj}}, function (error, returnedPost) {
             if (error) {
                 console.log(error);
+                res.json({
+                    status: 'error',
+                    message: error
+                });
             } else {
-                console.log(success);
+                console.log('Saved Post ', returnedPost);
+                res.json({
+                    status: 'success', message: 'success adding content to Post',
+                    post_id: returnedPost._id,
+                    post: returnedPost
+                });
             }
         });
-        res.json({status: 'OK'});
     });
 });
 

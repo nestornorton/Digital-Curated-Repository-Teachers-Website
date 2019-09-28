@@ -129,7 +129,10 @@ export class SharingComponent implements OnInit {
 
     this.postContentService.addPostWithContent(content).then((res) => {
       console.log('/addPostWithContent response:', res);
-
+      const PostIDtoSaveIntoUser = res.post_id;
+      this.userService.storePostID(PostIDtoSaveIntoUser).then((response) => {
+        console.log('saved Post ID response: ', response);
+      });
     }).catch((error) => {
       console.error('/addPostWithContent Error:', error);
     });

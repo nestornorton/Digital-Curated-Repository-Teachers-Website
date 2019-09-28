@@ -38,4 +38,23 @@ export class UserService {
   public register(registrationInfo: any): Promise<any> {
     return this.http.post(this.endpoint.concat('/register'), registrationInfo, {}).toPromise();
   }
+
+  /* Stores a Post's Object ID in the User's content[] array
+  * request body must contain objectID of the Post and unique username */
+  public storePostID(postObjID: any): Promise<any> {
+    const body = {
+      userID: this.getStoredLoggedInUsername(),
+      ObjID: postObjID
+    };
+    console.log('sending request to store PostObjID', body);
+    return this.http.post(this.endpoint.concat('/storePostID'), body, {}).toPromise();
+  }
+
+  /* Retrieve the list of Posts Object IDs
+* request must contain unique username of user
+* GET request contains username as query parameter in URL (syntax ':' to denote query param) */
+  public getUserPostIDs(): Promise<any> {
+    return this.http.post(this.endpoint.concat('//getPostIDs?userID='.concat(this.getStoredLoggedInUsername())),
+      {}, {}).toPromise();
+  }
 }
