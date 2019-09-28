@@ -137,10 +137,4 @@ export class SharingComponent implements OnInit {
       console.error('/addPostWithContent Error:', error);
     });
   }
-
-
-  /* todo: save the post id in the user's content[] array mongodb document */
-  public saveUsersPost(postID: any) {
-    // todo: call user Service to save the postID user's doc in mongodb
-  }
 }

@@ -11,6 +11,9 @@ export class UserService {
 
   /* Property to store username in after user logs in */
   private loggedInUsername: string;
+  /* todo: To be used later to check whether to redirect to login if logged in or not/ disable register butons if logged
+       in, etc */
+  public isLoggedIn: boolean;
 
   /* URL Endpoint to connect to the backend */
   private readonly endpoint = 'http://localhost:3000/users';
@@ -50,11 +53,11 @@ export class UserService {
     return this.http.post(this.endpoint.concat('/storePostID'), body, {}).toPromise();
   }
 
-  /* Retrieve the list of Posts Object IDs
+  /* Retrieve the entire list of Posts Object IDs
 * request must contain unique username of user
 * GET request contains username as query parameter in URL (syntax ':' to denote query param) */
   public getUserPostIDs(): Promise<any> {
-    return this.http.post(this.endpoint.concat('//getPostIDs?userID='.concat(this.getStoredLoggedInUsername())),
-      {}, {}).toPromise();
+    return this.http.get(this.endpoint.concat('/getPostIDs'),
+      {params: {userID: this.getStoredLoggedInUsername()}}).toPromise();
   }
 }

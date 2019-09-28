@@ -68,3 +68,11 @@ module.exports.addPostID = function (userID, postObjID, callback) {
         User.update({$push: {content: {id: postObjID}}}, callback);
     });
 };
+
+/* Retrieve the list of Posts Object IDs
+* request must contain userID as query param */
+module.exports.getAllPostIDs = function (userID, callback) {
+    User.findOne({username: userID}, '', callback);
+};
+
+

@@ -1,4 +1,22 @@
-<span>Hello {{username}}!</span>
-<p>
-  Homeeeeeeeee
-</p>
+<div class="header-container">
+  <h1>Hello {{username}}! You Currently Have {{PostIDList?.length}} Posts Shared</h1>
+</div>
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Post ID</th>
+      <!-- <th scope="col">Title</th>
+       <th scope="col">Last</th>
+       <th scope="col">Handle</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let post of PostIDList; let i = index">
+      <tr>
+        <th scope="row">{{post._id}}</th>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

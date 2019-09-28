@@ -96,9 +96,21 @@ router.post('/storePostID', (req, res, next) => {
 /* Retrieve the list of Posts Object IDs
 * request must contain unique username of user
 * GET request contains username as query parameter in URL (syntax ':' to denote query param) */
-router.get('/getPostIDs/:username', (req, res, next) => {
-    console.log('received request for getting User Post IDs: ', req);
-    console.log('query', req.query);
+router.get('/getPostIDs', (req, res, next) => {
+    console.log('received request for getting User Post IDs: ', req.query);
+    User.getAllPostIDs(req.query.userID, (error, User) => {
+        if (error || User === null) {
+            console.log('error retrieving List of PostIDs: ', error);
+            res.json({status: 'error', 'message': error})
+        } else {
+            console.log('Success retriving List of  PostIDs: ', User);
+            res.json({
+                status: 'success',
+                message: 'Successfully retrieved User\'s Content array of Post IDs',
+                content: User.content
+            });
+        }
+    })
 });
 
 

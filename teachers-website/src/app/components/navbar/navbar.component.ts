@@ -23,8 +23,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/Sharing']);
   }
 
-  public onLogin() {
-    this.router.navigate(['/Login']);
+  public onHome() {
+    this.router.navigate(['/Home']);
   }
 
   public onRegister() {
