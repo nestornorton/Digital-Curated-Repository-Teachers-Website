@@ -1,14 +1,13 @@
 <div>
     <button (click)="add()">Add Content</button>
-  <button (click)="addPost()">Add Post</button>
-  <button (click)="addPostWithContentArray()">Add Post with Example Content (Dev only)</button>
+  <button (click)="addPostWithContentArray()">Add Post</button>
 </div>
 <div id="content">
-    <div id="contentInside" *ngFor="let container of containers">
+    <div id="contentInside" *ngFor="let container of containers; index as i">
         <div id="embedded">
             <!-- Image -->
             <span style="color:red;" *ngIf="message">{{message}}</span>
-            <input #file type="file" accept='image/*' (change)="previewImage(file.files)" />
+            <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)" />
             <img [src]="imageURL" height="200" *ngIf="imageURL">
 
             <!-- Video -->
@@ -29,7 +28,7 @@
             <!-- PDF -->
             <div>
                     <label> Search PDF </label>
-                    <input (change)="previewPDF()" type="file" id="file">
+                    <input (change)="previewPDF(i)" type="file" id="file">
                     <input [(ngModel)]="page" type="text" id="page">
             </div>
             <div>

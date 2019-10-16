@@ -34,8 +34,8 @@ app.use(cors());
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Body Parser Middleware
-app.use(bodyParser.json());
+// Body Parser Middleware - limit POST request body payloads to 50mb
+app.use(bodyParser.json({limit: '50mb'}));
 
 // Passport Middleware
 app.use(passport.initialize());

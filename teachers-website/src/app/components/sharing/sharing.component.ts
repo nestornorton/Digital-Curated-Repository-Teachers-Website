@@ -14,6 +14,10 @@ export class SharingComponent implements OnInit {
   }
 
   containers = [];
+  // fileArray holds a list of  objects as { file: "{FileBinaryAsString}", type: "{mimetype}" }
+  public fileArray: any[] = [];
+  // titleAndDescriptions holds a list of objects as { title: "{file title}", description: "{desc}" }
+  public titleAndDescriptions: any[] = [];
   private id: string;
   pdfId: string = '';
 
@@ -21,19 +25,20 @@ export class SharingComponent implements OnInit {
   public imagePath;
   imageURL: any;
   public message: string;
-
   player: YT.Player;
 
 
   ngOnInit() {
   }
 
-  // Adding another content
+  // Adding another content, adds empty title and description to titleAndDescriptionArray
   add() {
     this.containers.push(this.containers.length);
+    this.titleAndDescriptions.push({title: '', description: ''});
   }
 
-  previewImage(files) {
+  /* Add container Index for future feature of container deletion (and corresponding files deletion)*/
+  previewImage(files, containerIndex) {
     if (files.length === 0) {
       return;
     }
@@ -50,6 +55,9 @@ export class SharingComponent implements OnInit {
     reader.onload = (event) => {
       this.imageURL = reader.result;
     };
+
+    // save the binary of the file as string into fileArray
+    this.saveFileAsBinaryString(files, mimeType, containerIndex);
   }
 
   // For embedding Youtube video
@@ -71,8 +79,8 @@ export class SharingComponent implements OnInit {
     // console.log('player state', event.data);
   }
 
-  // For embedding PDF
-  previewPDF() {
+  // For embedding PDF (containerIndex used to keep track of which container has respective file(s) )
+  previewPDF(containerIndex?: number) {
     const img: any = document.querySelector('#file');
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
@@ -81,7 +89,25 @@ export class SharingComponent implements OnInit {
       };
       reader.readAsArrayBuffer(img.files[0]);
     }
+
+    // save the binary of the file as string into fileArray
+    this.saveFileAsBinaryString(img.files, containerIndex);
   }
+
+
+  /* Saves file as Binary String - used for adding Post to backend later on */
+  public saveFileAsBinaryString(files: any, mimeType?: any, containerIndex?: number) {
+    // read the file as binary string to store in fileArray and send to backend API
+    const newReader = new FileReader();
+    newReader.readAsBinaryString(files[0]);
+    const fileType = files[0].type;
+    newReader.onload = (event) => {
+      const fileObj = {file: newReader.result, type: fileType};
+      this.fileArray.push(fileObj);
+      console.log('fileArray new file in binary: ', this.fileArray);
+    };
+  }
+
 
   /* Adds a Post initially with empty content, and then loops through a content array and adds each content media item
   * to the newly created Post */
@@ -118,14 +144,18 @@ export class SharingComponent implements OnInit {
   public addPostWithContentArray() {
     // todo: example content array below, to remap a existing content array like in for loop fashion to a
     //  new array with properties needed, see the .map( (item) => {} function in typescript that will return a new array
-    const content = [
-      {
-        mediaObj: 'Binary stuff - 12u90jgbn93012ngnbidmasv-220gnibfbondkoefm0122340gbbbbb030b303',
-        mediaType: 'Example Media Type',
-        userMediaTitle: 'Title of Media',
-        userMediaDescription: 'Description of media',
+
+    const content = this.fileArray.map((fileObj, index) => {
+      return {
+        mediaObj: fileObj.file,
+        mediaType: fileObj.type,
+        userMediaTitle: this.titleAndDescriptions[index].title,
+        userMediaDescription: this.titleAndDescriptions[index].description,
         authorUserID: this.userService.getStoredLoggedInUsername()
-      }];
+      };
+    });
+
+    console.log('Mapped fileArray to new content array with properties needed: ', content);
 
     this.postContentService.addPostWithContent(content).then((res) => {
       console.log('/addPostWithContent response:', res);
