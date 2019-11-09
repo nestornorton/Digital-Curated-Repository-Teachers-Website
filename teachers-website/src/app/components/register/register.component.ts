@@ -33,6 +33,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.userService.isLoggedIn) {
+      this.userService.isLoggedIn = false;
+    }
   }
 
   public onRegister() {

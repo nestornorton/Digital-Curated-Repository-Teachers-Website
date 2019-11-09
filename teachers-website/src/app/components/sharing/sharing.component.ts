@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsContentService} from '../../services/posts-content.service';
 import {UserService} from '../../services/user-service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {UserService} from '../../services/user-service';
 })
 export class SharingComponent implements OnInit {
 
-  constructor(private postContentService: PostsContentService, private userService: UserService) {
+  constructor(private postContentService: PostsContentService, private userService: UserService, private router: Router) {
   }
 
   containers = [];
@@ -27,8 +28,11 @@ export class SharingComponent implements OnInit {
   public message: string;
   player: YT.Player;
 
-
   ngOnInit() {
+    if (!this.userService.isLoggedIn) {
+      this.router.navigate(['/Login']);
+    } else {
+    }
   }
 
   // Adding another content, adds empty title and description to titleAndDescriptionArray
@@ -101,6 +105,9 @@ export class SharingComponent implements OnInit {
     const newReader = new FileReader();
     newReader.readAsBinaryString(files[0]);
     const fileType = files[0].type;
+    // tslint:disable-next-line:only-arrow-functions
+    newReader.onload = () => {
+    };
     newReader.onload = (event) => {
       const fileObj = {file: newReader.result, type: fileType};
       this.fileArray.push(fileObj);

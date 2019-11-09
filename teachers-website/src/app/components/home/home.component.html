@@ -1,20 +1,25 @@
 <div class="header-container">
   <h1>Hello {{username}}! You Currently Have {{PostIDList?.length}} Posts Shared</h1>
 </div>
+<div class="search-container">
+  <label for="typeahead-basic">Search for content by Media Title or Description:</label>
+  <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search"/>
+</div>
 <div class="table-container">
   <table class="table">
     <thead>
     <tr>
       <th scope="col">Post ID</th>
-      <!-- <th scope="col">Title</th>
-       <th scope="col">Last</th>
-       <th scope="col">Handle</th>-->
+      <th>First Content Title </th>
+      <th>First Content Description</th>
     </tr>
     </thead>
     <tbody>
-    <ng-container *ngFor="let post of PostIDList; let i = index">
+    <ng-container *ngFor="let post of postList; let i = index">
       <tr>
-        <th scope="row">{{post._id}}</th>
+        <td scope="row" >{{post?._id}}</td>
+        <td scope="row">{{ post?.content[0]?.userMediaTitle}}</td>
+        <td scope="row">{{ post?.content[0]?.userMediaDescription}}</td>
       </tr>
     </ng-container>
     </tbody>

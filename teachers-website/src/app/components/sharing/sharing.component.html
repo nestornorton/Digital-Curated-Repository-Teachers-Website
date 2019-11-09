@@ -1,50 +1,52 @@
 <div>
-    <button (click)="add()">Add Content</button>
+  <button (click)="add()">Add Content</button>
   <button (click)="addPostWithContentArray()">Add Post</button>
 </div>
 <div id="content">
-    <div id="contentInside" *ngFor="let container of containers; index as i">
-        <div id="embedded">
-            <!-- Image -->
-            <span style="color:red;" *ngIf="message">{{message}}</span>
-            <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)" />
-            <img [src]="imageURL" height="200" *ngIf="imageURL">
+  <div id="contentInside" *ngFor="let container of containers; index as i">
+    <div id="embedded">
+      <!-- Image -->
+      <span style="color:red;" *ngIf="message">{{message}}</span>
+      <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)"/>
+      <img [src]="imageURL" height="200" *ngIf="imageURL">
 
-            <!-- Video -->
-            <div>
-                Youtube Video ID: <input type="text" [(ngModel)]="videoId" />
-                <button (click)="submitVideo(videoId)" >Submit</button>
-            </div>
-            
-            <div id="youtubeContainer" [hidden]="id == null">
-                <youtube-player *ngIf="id != null"
-                    [videoId]="id"
-                    (ready)="savePlayer($event)"
-                    (change)="onStateChange($event)"
-                    [playerVars]="playerVars">
-                </youtube-player>
-            </div>
+      <!-- Video -->
+      <div>
+        Youtube Video ID: <input type="text" [(ngModel)]="videoId"/>
+        <button (click)="submitVideo(videoId)">Submit</button>
+      </div>
 
-            <!-- PDF -->
-            <div>
-                    <label> Search PDF </label>
-                    <input (change)="previewPDF(i)" type="file" id="file">
-                    <input [(ngModel)]="page" type="text" id="page">
-            </div>
-            <div>
-                <pdf-viewer [src]="pdfId"
+      <div id="youtubeContainer" [hidden]="id == null">
+        <youtube-player *ngIf="id != null"
+                        [videoId]="id"
+                        (ready)="savePlayer($event)"
+                        (change)="onStateChange($event)"
+                        [playerVars]="playerVars">
+        </youtube-player>
+      </div>
+
+      <!-- PDF -->
+      <div>
+        <label> Search PDF </label>
+        <input (change)="previewPDF(i)" type="file" id="file">
+        <input [(ngModel)]="page" type="text" id="page">
+      </div>
+      <div>
+        <pdf-viewer [src]="pdfId"
                     [render-text]="true"
-                    [page]="page" 
+                    [page]="page"
                     [show-all]="false"
                     style="display: block;">
-                </pdf-viewer>
-            </div>
-                  
+        </pdf-viewer>
+      </div>
 
-        </div>
-        <div id="texts">
-                Text
-                <input type="text" />
-        </div>
+
     </div>
+    <div id="texts">
+      Media Title:
+      <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
+      Media Description:
+      <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
+    </div>
+  </div>
 </div>

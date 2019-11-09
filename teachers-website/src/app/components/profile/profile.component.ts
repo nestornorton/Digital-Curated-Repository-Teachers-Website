@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user-service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) {
+  }
 
   ngOnInit() {
+    if (!this.userService.isLoggedIn) {
+      this.router.navigate(['/Login']);
+    } else {
+    }
   }
 
 }

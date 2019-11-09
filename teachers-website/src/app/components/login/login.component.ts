@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {Credentials} from '../../DomainModels/credentials';
 import {UserService} from '../../services/user-service';
 import {AuthRegistrationResponse} from '../../DomainModels/serverAuthRegistrationResponse';
@@ -11,6 +11,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  /* Output event so parent app.component can update navbar options for logged in users */
 
   /* Login Success property: true/false - if it is true, a login Success pop up is shown */
   public loginSuccess = false;
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
             /* navigate to Home Page on successful registration, delay by one sec and half */
             setTimeout(() => {
               this.router.navigate(['/Home']);
+              this.userService.isLoggedIn = true;
             }, 1500);
           });
         } else {

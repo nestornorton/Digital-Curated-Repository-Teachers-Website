@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from './user-service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +76,21 @@ export class PostsContentService {
     };
     return this.http.post(this.endpoint.concat('/addContentMedia'), body,
       {}).toPromise();
+  }
+
+
+  /* Retrieve Posts that match a search term - the search term will be matched against a Post's content title and
+  * content description, the search term will also match against uploaded file types such as "ex.pdf" */
+  public getPostSearchResults(searchTerm: any): Promise<any> {
+    console.log('creating request for search results: ', searchTerm);
+    const body = {term: searchTerm};
+    return this.http.post(this.endpoint.concat('/searchPosts'), body, {}).toPromise();
+  }
+
+
+  // tslint:disable-next-line:variable-name
+  public getPostById(postId: any): Promise<any> {
+    console.log('creating request to get Post by ID: ', postId);
+    return this.http.get(this.endpoint.concat('/getPostById'), {params: {id: postId}}).toPromise();
   }
 }

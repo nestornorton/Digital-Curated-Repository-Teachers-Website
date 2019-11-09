@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 //const User = require('../models/user');
 const Post = require('../models/posts');
-
+const mongoose = require('mongoose');
 
 // Adds a Post with empty content
 /* Request body contains:
@@ -139,8 +139,53 @@ router.post('/addContentMedia', (req, res, next) => {
     });
 });
 
-// Retrieving Post from user endpoint todo
+// search functionality - matches a term to a Posts content title or description
+router.post('/searchPosts', async (req, res, next) => {
+    console.log('received request to search for Posts with matching term:', req.body.term);
+    const term = req.body.term;
 
+    const PostResults = [];
+    let resultSet = [];
+    /* search Posts Collection of documents by content array nested document properties 'userMediaTitle' and
+    * 'userMediaTitle', resultSet contain a set of embedded documents that match (as substring) EITHER of these
+    * two properties */
+    /* Perform logical operator OR to regex expression on both properties and project fields  */
+    resultSet = await Post.find({
+        $or: [{
+            'content.userMediaTitle': {$regex: term, $options: 'i'}
+        },
+            {'content.userMediaDescription': {$regex: term, $options: 'i'}}],
+    }, {'content.userMediaTitle': 1, 'content.userMediaDescription': 1});
+
+    console.log('resultSet from search: ', JSON.stringify(resultSet));
+
+    // map() results to include small set of properties and not actual content file objects, include first item info
+    resultSet.map((item) => {
+        return {
+            _id: item._id,
+            userMediaTitle: item.content[0].userMediaTitle,
+            userMediaDescription: item.content[0].userMediaDescription
+        };
+    });
+
+    console.log('final resultSet: ', JSON.stringify(resultSet));
+
+
+    res.send(resultSet);
+
+});
+
+// Retrieving Post by _id, does return the actual BLOB of content (i.e. files uploaded)
+router.get('/getPostById', async (req, res, next) => {
+        console.log('recvd request to get Post by ID: ', req.query.id);
+        const _id = req.query.id;
+
+        const document = await Post.findOne({'_id': mongoose.Types.ObjectId(_id)});
+        console.log('document retrieved: ', document);
+
+        res.send(document);
+    }
+);
 
 // Save edited post endpoint todo
 
