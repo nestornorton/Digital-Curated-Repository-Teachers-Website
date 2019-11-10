@@ -4,6 +4,8 @@ import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {PostsContentService} from '../../services/posts-content.service';
 import {Router} from '@angular/router';
+import {NgbTypeaheadSelectItemEvent} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-home',
@@ -48,7 +50,7 @@ export class HomeComponent implements OnInit {
     // must be finished to move on to next function, map() function projects a function on each search stream and
     // returns a observable for completion
     text$.pipe(
-      debounceTime(200),
+      debounceTime(100),
       distinctUntilChanged(), map((term) => {
         if (term.length > 2) {
           this.getPostSearchResults(term);
@@ -58,15 +60,30 @@ export class HomeComponent implements OnInit {
         }
       }))
 
+  /* Format Popup Search Results */
+  public formatter(x: any): any {
+    return x.content[0].userMediaTitle.concat(' ', x.content[0].userMediaDescription);
+  }
+
+  /* Formats the input value */
+  public inputValFormatter = (x: any) => x.content[0].userMediaTitle + ' ' + x.content[0].userMediaDescription;
+
   /* Returns completed searchResults */
   private getPostSearchResults(term?: any) {
     console.log('term recvd: ', term);
     this.postContentService.getPostSearchResults(term).then((res) => {
-      this.searchResults = res.map((item) => {
-        return item.content[0].userMediaTitle.concat(' ', item.content[0].userMediaDescription);
-      });
+      this.searchResults = res;
     });
   }
 
 
+  public onSearchItemSelection($event: NgbTypeaheadSelectItemEvent) {
+    console.log('clicked search item: ', $event.item);
+    // navigate to view post component with the _id of this post
+  }
+
+  onPostIdClick($event) {
+    console.log('user clicked on PostID, navigating to view post component: ', $event.target.innerText);
+    // navigate to post component with the post _id clicked
+  }
 }

@@ -3,21 +3,22 @@
 </div>
 <div class="search-container">
   <label for="typeahead-basic">Search for content by Media Title or Description:</label>
-  <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search"/>
+  <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search" [resultFormatter]="formatter"
+         [inputFormatter]="inputValFormatter" (selectItem)="onSearchItemSelection($event)"/>
 </div>
 <div class="table-container">
   <table class="table">
     <thead>
     <tr>
       <th scope="col">Post ID</th>
-      <th>First Content Title </th>
+      <th>First Content Title</th>
       <th>First Content Description</th>
     </tr>
     </thead>
     <tbody>
     <ng-container *ngFor="let post of postList; let i = index">
       <tr>
-        <td scope="row" >{{post?._id}}</td>
+        <td scope="row" (click)="onPostIdClick($event)">{{post?._id}}</td>
         <td scope="row">{{ post?.content[0]?.userMediaTitle}}</td>
         <td scope="row">{{ post?.content[0]?.userMediaDescription}}</td>
       </tr>
