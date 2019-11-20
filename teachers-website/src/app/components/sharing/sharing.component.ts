@@ -86,6 +86,8 @@ export class SharingComponent implements OnInit {
   // For embedding PDF (containerIndex used to keep track of which container has respective file(s) )
   previewPDF(containerIndex?: number) {
     const img: any = document.querySelector('#file');
+    console.log("blob?");
+    console.log(img.files);
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
       reader.onload = (e: any) => {

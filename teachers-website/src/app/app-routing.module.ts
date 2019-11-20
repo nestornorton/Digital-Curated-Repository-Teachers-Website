@@ -5,6 +5,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import { SharingComponent } from './components/sharing/sharing.component';
+import { ViewingComponent } from './components/viewing/viewing.component';
 
 /* Routes (Endpoints) for the App - Any empty endpoint will be redirected to login by default */
 const appRoutes: Routes = [
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
   {path: 'Home', component: HomeComponent},
   {path: 'Profile', component: ProfileComponent},
   {path: 'Sharing', component: SharingComponent},
+  {path: 'Viewing/:id', component: ViewingComponent},
   {path: '', redirectTo: '/Login', pathMatch: 'full'}
 ];
 

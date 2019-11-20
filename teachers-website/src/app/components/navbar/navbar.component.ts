@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/Sharing']);
   }
 
+  public onViewing() {
+    this.router.navigate(['/Viewing/:id']);
+  }
+
   public onHome() {
     this.router.navigate(['/Home']);
   }
