@@ -1,9 +1,10 @@
 # Digital-Curated-Repository-Teachers-Website
 
-This web application’s purpose is to be a Curated Repository for Teachers. A website repository that should help various college teachers efficiently share resources in different media formats. The site will be a location to crowdsource teacher experiences in the form of descriptions and demo videos which will be searchable.
+This web application’s purpose is to be a Curated Repository for Teachers, a website repository that should help various college teachers efficiently share resources in different media formats. The site will be a location to crowdsource teacher experiences in the form of descriptions and demo videos which will be searchable.
 
 
 ## Release Notes
+### Version 1.0.0
 
 ### Features:
 
@@ -20,6 +21,9 @@ This web application’s purpose is to be a Curated Repository for Teachers. A w
 * Missing favorite feature: adding something to favorite for future viewing.
 * Missing threads feature: more advanced sorting and recommendation system .
 * Missing report feature: report inappropriate content to admin for review.
+
+### Bugs and defects Fixed since last Release:
+*  When a user is not logged in, the navigation bar was displaying the sharing, profile tabs and if they are clicked, it would display the respective component such as sharing page with errors since no user is logged in to share or create a post. Now, the navigation bar only shows register tab when the user is not logged in, and displays the sharing, profile tabs if logged in and vice versa.
 
 ### Functionality Missing in Release:
 
