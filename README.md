@@ -1,15 +1,15 @@
 # Digital-Curated-Repository-Teachers-Website
 
 
-##Release Notes
+## Release Notes
 
-###Features:
+### Features:
 
 * Users are able to register on our website with use a .edu email and use a valid account with password to login. After a successful log in, the users are able to create a new post, view exit posts from both self and others, and edit their posts.
 * Function of sharing posts allows users upload multiple types of file like txt, pdf, image, and video.
 * Users are also allowed to rate and post a comment on existing posts. 
    
-###Known bugs and defects:
+### Known bugs and defects:
 
 * Unexpected logout during page changes.
 * Missing favorite feature: adding something to favorite for future viewing.
@@ -17,9 +17,9 @@
 * Missing report feature: report inappropriate content to admin for review.
 
 
-##Install Guide  
+## Install Guide  
 
-###Pre-requisites:
+### Pre-requisites:
  
 For this project, we’re going to use the MEAN stack template to build the web.
 If you don’t have GIT installed on the computer, you can follow the install instructions here:
