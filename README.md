@@ -77,5 +77,12 @@ ng serve
 Now, you can go to your web browser and go to "localhost:4200", and register and log in.
 
 
+### Troubleshooting
+
+The above instructions have been tested and work. If you are having issues:
+
+* Make sure to have the installed software in the prerequisites section above. 
+* Make sure mongoDB is running in the background before you run the backend server (nodemon) and then the website (ng serve).
+* Make sure you are running latest version of your browser (Chrome, Safari, Edge, etc).
 
 
