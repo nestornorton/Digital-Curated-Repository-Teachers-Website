@@ -5,9 +5,12 @@
 
 ### Features:
 
-* Users are able to register on our website with use a .edu email and use a valid account with password to login. After a successful log in, the users are able to create a new post, view exit posts from both self and others, and edit their posts.
+* Users are able to register on our website with use a .edu email and use a valid account with password to login. 
+* After a successful log in, the users are able to create a new post.
+* Users is able to view existing posts with pdf content from both self and others.
+* Users are able to search for a post's content title or descriptions in their homepage.
+* Users are able to see what posts they have uploaded in their homepage. 
 * Function of sharing posts allows users upload multiple types of file like txt, pdf, image, and video.
-* Users are also allowed to rate and post a comment on existing posts. 
    
 ### Known bugs and defects:
 
@@ -15,6 +18,13 @@
 * Missing favorite feature: adding something to favorite for future viewing.
 * Missing threads feature: more advanced sorting and recommendation system .
 * Missing report feature: report inappropriate content to admin for review.
+
+### Functionality Missing in Release:
+
+* viewing existing images from a post.
+* download certain types of files that were uploaded in posts (e.g. docx, ppt).
+* Editing existing posts.
+* Rating and commenting on posts.
 
 
 ## Install Guide  
