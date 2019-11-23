@@ -1,9 +1,69 @@
 # Digital-Curated-Repository-Teachers-Website
- Libraries - mongoDB, express, path, bodyParser, passport, mongoose, config, nodemon, etc
-Has API set up with MongoDB database because angular and node works well with MongoDB, but open for additional databases later on.
-Has some starting front end, and added bootstrap from bootstrap.com and bootswatch.com.
 
-# Running
-For backend in port 4200, type in top directory: nodemon
-For frontend in port 3000, type in teachers-website-frontend: ng serve
-For database in port 27017, download mongodb and postman to play around
+
+##Release Notes
+
+###Features:
+
+* Users are able to register on our website with use a .edu email and use a valid account with password to login. After a successful log in, the users are able to create a new post, view exit posts from both self and others, and edit their posts.
+* Function of sharing posts allows users upload multiple types of file like txt, pdf, image, and video.
+* Users are also allowed to rate and post a comment on existing posts. 
+   
+###Known bugs and defects:
+
+* Unexpected logout during page changes.
+* Missing favorite feature: adding something to favorite for future viewing.
+* Missing threads feature: more advanced sorting and recommendation system .
+* Missing report feature: report inappropriate content to admin for review.
+
+
+##Install Guide  
+
+###Pre-requisites:
+ 
+For this project, we’re going to use the MEAN stack template to build the web.
+If you don’t have GIT installed on the computer, you can follow the install instructions here:
+
+* [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+To run server side with the JavaScript and MongoDB, you need install:
+
+* [Node.js](https://nodejs.org/)
+* [MongoDB](https://www.mongodb.com/)
+
+Once Node.js is installed, a package manager named npm will be installed with the Node.js. Npm is able to help you search and download many 3rd party libraries.
+ 
+###Installation to Running:
+ 
+First, clone the GitHub repository by running the following command in your command line or terminal:
+
+```
+git clone https://github.com/nestornorton/Digital-Curated-Repository-Teachers-Website.git
+``` 
+
+Next, go to the repository directory by typing 
+cd (change directory), add a space and drag the root project folder into the terminal of command line and press enter.
+
+To download all necessary dependencies for the project, in the top or root directory type:
+
+```
+npm install
+```
+
+To run the backend server, type:
+
+``` 
+nodemon  
+```
+Open another command line or terminal and go to the teachers-website directory under the root directory, cd into that folder by typing cd (space) (drag folder in terminal or command line).
+ 
+To run the Angular frontend,type:
+
+``` 
+ng serve
+```   
+Now, you can go to your web browser and go to "localhost:4200", and register and log in.
+
+
+
+
