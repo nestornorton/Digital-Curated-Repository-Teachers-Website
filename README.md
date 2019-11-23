@@ -42,7 +42,7 @@ If you don’t have GIT installed on the computer, you can follow the install in
 
 * [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-To run server side with the JavaScript and MongoDB, you need install:
+This project was generated with Angular CLI version 8.3.3 and MondoDB version 4.0.3. To run server side with the JavaScript and MongoDB, you need install:
 
 * [Node.js](https://nodejs.org/)
 * [MongoDB](https://www.mongodb.com/)
