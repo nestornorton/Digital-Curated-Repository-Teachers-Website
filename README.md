@@ -77,7 +77,7 @@ ng serve
 Now, you can go to your web browser and go to "localhost:4200", and register and log in.
 
 
-### Troubleshooting
+## Troubleshooting
 
 The above instructions have been tested and work. If you are having issues:
 
