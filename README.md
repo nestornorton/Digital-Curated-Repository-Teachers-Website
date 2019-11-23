@@ -1,5 +1,7 @@
 # Digital-Curated-Repository-Teachers-Website
 
+This web application’s purpose is to be a Curated Repository for Teachers. A website repository that should help various college teachers efficiently share resources in different media formats. The site will be a location to crowdsource teacher experiences in the form of descriptions and demo videos which will be searchable.
+
 
 ## Release Notes
 
@@ -31,7 +33,7 @@
 
 ### Pre-requisites:
  
-For this project, we’re going to use the MEAN stack template to build the web.
+For this project, we’re going to use the MEAN stack template to build the web application.
 If you don’t have GIT installed on the computer, you can follow the install instructions here:
 
 * [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -54,7 +56,7 @@ git clone https://github.com/nestornorton/Digital-Curated-Repository-Teachers-We
 Next, go to the repository directory by typing 
 cd (change directory), add a space and drag the root project folder into the terminal of command line and press enter.
 
-To download all necessary dependencies for the project, in the top or root directory type:
+To download all necessary dependencies for the project, in the top or root directory, type:
 
 ```
 npm install
@@ -67,7 +69,7 @@ nodemon
 ```
 Open another command line or terminal and go to the teachers-website directory under the root directory, cd into that folder by typing cd (space) (drag folder in terminal or command line).
  
-To run the Angular frontend,type:
+To run the Angular frontend, type:
 
 ``` 
 ng serve
