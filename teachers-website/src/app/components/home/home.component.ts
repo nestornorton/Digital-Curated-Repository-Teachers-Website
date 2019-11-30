@@ -85,5 +85,6 @@ export class HomeComponent implements OnInit {
   onPostIdClick($event) {
     console.log('user clicked on PostID, navigating to view post component: ', $event.target.innerText);
     // navigate to post component with the post _id clicked
+    this.router.navigate(['/Viewing/'.concat($event.target.innerText)]);
   }
 }

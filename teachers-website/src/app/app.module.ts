@@ -18,6 +18,7 @@ import {UserService} from './services/user-service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharingComponent} from './components/sharing/sharing.component';
 import {PostsContentService} from './services/posts-content.service';
+import { ViewingComponent } from './components/viewing/viewing.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {PostsContentService} from './services/posts-content.service';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    SharingComponent
+    SharingComponent,
+    ViewingComponent
   ],
   imports: [
     BrowserModule,
