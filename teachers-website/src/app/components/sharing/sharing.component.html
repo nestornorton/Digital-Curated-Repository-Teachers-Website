@@ -6,41 +6,37 @@
   <div id="contentInside" *ngFor="let container of containers; index as i">
     <div id="embedded">
       <!-- Image -->
-      <span style="color:red;" *ngIf="message">{{message}}</span>
-      <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)"/>
-      <img [src]="imageURL" height="200" *ngIf="imageURL">
-
-      <!-- Video -->
-      <div>
-        Youtube Video ID: <input type="text" [(ngModel)]="videoId"/>
-        <button (click)="submitVideo(videoId)">Submit</button>
+      <div *ngIf="showContainerInputs[i]">
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)"/>
       </div>
-
-      <div id="youtubeContainer" [hidden]="id == null">
-        <youtube-player *ngIf="id != null"
-                        [videoId]="id"
+      <img *ngIf="imageUrlArray[i]" [src]="imageUrlArray[i]" height="200">
+      <!-- Video -->
+      <div *ngIf="showContainerInputs[i]">
+        Youtube Video Full Link: <input type="text" #linkInput/>
+        <button (click)="submitVideo(linkInput.value, i)">Submit</button>
+      </div>
+      <div *ngIf="youtubeLinksArray[i]" id="youtubeContainer">
+        <youtube-player *ngIf="youtubeLinksArray[i]"
+                        [videoId]="youtubeLinksArray[i]"
                         (ready)="savePlayer($event)"
                         (change)="onStateChange($event)"
-                        [playerVars]="playerVars">
+                        [playerVars]="">
         </youtube-player>
       </div>
-
       <!-- PDF -->
-      <div>
+      <div *ngIf="showContainerInputs[i]">
         <label> Search PDF </label>
-        <input (change)="previewPDF(i)" type="file" id="file">
-        <input [(ngModel)]="page" type="text" id="page">
+        <input (change)="previewPDF($event, i)" accept='application/pdf' type="file" id="file">
       </div>
-      <div>
-        <pdf-viewer [src]="pdfId"
+      <div *ngIf="pdfIdArray[i]" id="pdf-viewer-container">
+        <pdf-viewer [src]="pdfIdArray[i]"
                     [render-text]="true"
-                    [page]="page"
+                    [page]="1"
                     [show-all]="false"
-                    style="display: block;">
+        >
         </pdf-viewer>
       </div>
-
-
     </div>
     <div id="texts">
       Media Title:

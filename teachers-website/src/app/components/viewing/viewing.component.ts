@@ -25,6 +25,8 @@ export class ViewingComponent implements OnInit {
 
   pdfArray: any[] = [];
 
+  videoArray: any[] = [];
+
   // @ViewChild('preview') preview: ElementRef;
 
   constructor(
@@ -38,22 +40,25 @@ export class ViewingComponent implements OnInit {
   ngOnInit() {
     // Get data from MongoDB then put in contentArray
     this.postContentService.getPostById(this.routeParams.id).then((response) => {
-      // console.log(response.content)
+      console.log('response: ', response.content);
       const temp = response.content;
       this.contentArray = [];
       temp.forEach(async (item) => {
         this.contentArray.push(item);
-        if (item.mediaType == 'image/png') {
-          this.imageArray.push(item)
-        } else if (item.mediaType == 'application/pdf') {
-          this.pdfArray.push(item);
+        if (item.mediaType.includes('image/') || item.mediaType.includes('application/pdf')) {
+          //
+        } else if (item.mediaType === 'LinkID') {
+          this.videoArray.push(item);
         }
       });
-      console.log(this.contentArray);
     });
 
     // Make empty divs/containers given how many contents there are in the contentArray
 
+  }
+
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   getRouteParams() {
@@ -95,9 +100,9 @@ export class ViewingComponent implements OnInit {
 
 
     var temp;
-    console.log("hello");
+    console.log('hello');
 
-    reader.addEventListener("load", function () {
+    reader.addEventListener('load', function () {
       temp = reader.result;
     }, false);
     this.imageURL = temp;
@@ -137,4 +142,5 @@ export class ViewingComponent implements OnInit {
 
   // }
 
+  /* Converts BLOB string from mongoDB to a local resource BLOB - used for image and pdf previews */
 }
