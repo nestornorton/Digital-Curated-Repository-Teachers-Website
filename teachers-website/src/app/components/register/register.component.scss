@@ -11,18 +11,19 @@
   transform: translate(-50%, -50%);
   position: absolute;
   width: 70vw;
-  height: 86%;
+  height: 84%;
   background-color: white;
   padding: 5%;
   box-shadow: 5px 10px 18px rgba(20, 26, 35, 0.78);
 }
 
 .alert-container {
-  height: 10%;
+  height: 0%;
 }
 
 .button-container {
-  padding-top: 5%;
+  transform: scale(1.2);
+  padding-top: 3%;
   text-align: center;
 }
 
