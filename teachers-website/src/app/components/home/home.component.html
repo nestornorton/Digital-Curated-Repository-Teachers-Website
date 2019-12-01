@@ -23,16 +23,17 @@
     </tbody>
   </table>
 </div> -->
-
+ 
 <div class="post-container">
   <ng-container *ngFor="let post of postList; let i = index">
     <img src="assets/cards1/{{i+1}}.jpg">
     <div class="postLink" id="postid" (click)="onPostIdClick($event)">{{post?._id}}</div>
   </ng-container>
 </div>
-
+ 
 <div class="recommendation-container">
   <ng-container *ngFor="let post of postList; let i = index">
     <img src="assets/cards2/{{i+1}}.jpg">
   </ng-container>
 </div>
+
