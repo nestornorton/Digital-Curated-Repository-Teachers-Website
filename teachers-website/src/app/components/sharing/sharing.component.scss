@@ -22,4 +22,12 @@
     width:500px;
     height:450px;
     margin: 10px;
+  overflow: scroll;
+  text-align: center;
 }
+
+#pdf-viewer-container {
+  border: groove;
+  transform: scale(0.9);
+}
+

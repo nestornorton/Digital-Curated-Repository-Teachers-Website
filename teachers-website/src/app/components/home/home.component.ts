@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
   public onSearchItemSelection($event: NgbTypeaheadSelectItemEvent) {
     console.log('clicked search item: ', $event.item);
     // navigate to view post component with the _id of this post
+    this.router.navigate(['/Viewing/'.concat($event.item._id)]);
   }
 
   onPostIdClick($event) {
