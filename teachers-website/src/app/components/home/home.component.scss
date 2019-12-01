@@ -13,3 +13,56 @@
   padding-bottom: 5%;
   text-align: center;
 }
+
+.post-container {
+  body {   display: flex;   align-items: center;   height: 100vh;}
+  display: flex;
+  overflow-x: auto;
+  margin-right: 300px;
+  margin-left: 300px;
+  
+
+  img {
+    height: 250px;
+    width: 250px;
+    margin-right: 20px;
+    
+  }
+  .postLink {
+    top: 10px;
+    left: 10px; 
+      
+    padding: 5px;
+    margin-left: -240px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 210px;
+    background-color: rgba(255, 255, 255, 0.7);
+
+  }
+}
+
+.post-container::-webkit-scrollbar {    
+  display: none;
+}
+
+
+.recommendation-container {
+  body {   display: flex;   align-items: center;   height: 100vh;}
+  display: flex;
+  overflow-x: auto;
+  margin-right: 300px;
+  margin-left: 300px;
+  margin-top: 100px;
+
+  img {
+    height: 250px;
+    width: 250px;
+    margin-right: 20px;
+    
+  }
+}
+
+.recommendation-container::-webkit-scrollbar {    
+  display: none;
+}

@@ -1,12 +1,9 @@
-<div class="header-container">
-  <h1>Hello {{username}}! You Currently Have {{PostIDList?.length}} Posts Shared</h1>
-</div>
 <div class="search-container">
   <label for="typeahead-basic">Search for content by Media Title or Description:</label>
   <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search" [resultFormatter]="formatter"
          [inputFormatter]="inputValFormatter" (selectItem)="onSearchItemSelection($event)"/>
 </div>
-<div class="table-container">
+<!-- <div class="table-container">
   <table class="table">
     <thead>
     <tr>
@@ -25,4 +22,17 @@
     </ng-container>
     </tbody>
   </table>
+</div> -->
+
+<div class="post-container">
+  <ng-container *ngFor="let post of postList; let i = index">
+    <img src="assets/cards1/{{i+1}}.jpg">
+    <div class="postLink" id="postid" (click)="onPostIdClick($event)">{{post?._id}}</div>
+  </ng-container>
+</div>
+
+<div class="recommendation-container">
+  <ng-container *ngFor="let post of postList; let i = index">
+    <img src="assets/cards2/{{i+1}}.jpg">
+  </ng-container>
 </div>
