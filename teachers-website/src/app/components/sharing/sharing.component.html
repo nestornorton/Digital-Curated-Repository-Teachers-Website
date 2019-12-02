@@ -1,3 +1,4 @@
+<html>
 <div>
   <button (click)="add()">Add Content</button>
   <button (click)="addPostWithContentArray()">Add Post</button>
@@ -6,11 +7,15 @@
   <div id="contentInside" *ngFor="let container of containers; index as i">
     <div id="embedded">
       <!-- Image -->
+      
       <div *ngIf="showContainerInputs[i]">
+        <label> Upload image: </label>
         <span style="color:red;" *ngIf="message">{{message}}</span>
         <input #file type="file" accept='image/*' (change)="previewImage(file.files, i)"/>
       </div>
       <img *ngIf="imageUrlArray[i]" [src]="imageUrlArray[i]" height="200">
+
+
       <!-- Video -->
       <div *ngIf="showContainerInputs[i]">
         Youtube Video Full Link: <input type="text" #linkInput/>
@@ -24,9 +29,10 @@
                         [playerVars]="">
         </youtube-player>
       </div>
+
       <!-- PDF -->
       <div *ngIf="showContainerInputs[i]">
-        <label> Search PDF </label>
+        <label> Upload PDF: </label>
         <input (change)="previewPDF($event, i)" accept='application/pdf' type="file" id="file">
       </div>
       <div *ngIf="pdfIdArray[i]" id="pdf-viewer-container">
@@ -39,10 +45,17 @@
       </div>
     </div>
     <div id="texts">
-      Media Title:
+      <p>
+        Media Title:
       <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
-      Media Description:
-      <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
+      </p>
+    
+       <p>
+        Media Description:
+        <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
+      </p>
     </div>
   </div>
 </div>
+
+</html>
