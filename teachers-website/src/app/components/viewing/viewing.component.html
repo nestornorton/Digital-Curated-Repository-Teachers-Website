@@ -1,49 +1,42 @@
-<p>viewing works!</p>
+<html>
+    
 
-<div class="app-example-params">
-  <h2>routeParams</h2>
-  <pre>{{ routeParams|json }}</pre>
-
-  <h2>queryParams</h2>
-  <pre>{{ queryParams|json }}</pre>
-</div>
-
-
-<div id="content">
-  <div id="contentInside" *ngFor="let container of contentArray; index as i">
-    <!-- Image -->
-    <div id="imageImbed" *ngIf="container.mediaType.includes('image/')">
-      <img [src]="container.mediaObj" height="200" alt="Image preview...">
-      hello image
+    <div id="content">
+    <div id="contentInside" *ngFor="let container of contentArray; index as i">
+        <!-- Image -->
+        <div id="imageImbed" *ngIf="container.mediaType.includes('image/')">
+        <img [src]="container.mediaObj" alt="Image preview..." style="width: 60%;">
+        </div>
+        <!-- PDF -->
+        <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
+        <!-- <img src="" height="200" alt="Image preview..." (ready)="previewFile(container)"> -->
+        
+        <pdf-viewer [src]="container.mediaObj"
+                    [render-text]="true"
+                    [page]="1"
+                    [show-all]="false"
+        >
+        </pdf-viewer>
+        </div>
+        <!-- Video -->
+        <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
+        <youtube-player
+            [videoId]="container.mediaObj"
+            [playerVars]="">
+        </youtube-player>
+        </div>
+        <!-- <div id="texts">
+            Media Title:
+            <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
+            Media Description:
+            <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
+        </div> -->
     </div>
-    <!-- PDF -->
-    <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
-      <!-- <img src="" height="200" alt="Image preview..." (ready)="previewFile(container)"> -->
-      PDF:
-      <pdf-viewer [src]="container.mediaObj"
-                  [render-text]="true"
-                  [page]="1"
-                  [show-all]="false"
-      >
-      </pdf-viewer>
     </div>
-    <!-- Video -->
-    <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
-      <youtube-player
-        [videoId]="container.mediaObj"
-        [playerVars]="">
-      </youtube-player>
-    </div>
-    <!-- <div id="texts">
-        Media Title:
-        <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
-        Media Description:
-        <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
-    </div> -->
-  </div>
-</div>
 
 
-<!--<input id="browse" type="file" onchange="previewFiles()" multiple>-->
-<div id="preview"></div>
+    <!--<input id="browse" type="file" onchange="previewFiles()" multiple>-->
+    <div id="preview"></div>
+    
+</html>
 
