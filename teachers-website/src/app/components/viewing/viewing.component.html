@@ -1,13 +1,28 @@
 <html>
 <div id="content">
   <div id="contentInside" *ngFor="let container of contentArray; index as i">
-    <div id="text-title">
-      <pre>Title:</pre>{{container.userMediaTitle}}
-    </div>
-    <div id="content-display">
+    <!-- <div id="text-title"> -->
+      <!-- <pre>Title:</pre>{{container.userMediaTitle}} -->
+    <!-- </div> -->
+    <!-- <div id="content-display"> -->
       <!-- Image -->
       <div id="embedded" *ngIf="container.mediaType.includes('image/')">
-        <img [src]="container.mediaObj" alt="Image preview..." style="width: 60%;">
+        <img [src]="container.mediaObj" alt="Image preview...">
+      </div>
+      <div id="texts">
+
+          <div id="text-title">
+             <!-- <pre>Title:</pre>{{container.userMediaTitle}} -->
+             {{container.userMediaTitle}}
+          </div>
+    
+          <div id="text-desc">
+           <!-- <pre>Description:</pre>{{container.userMediaDescription}} -->
+           {{container.userMediaDescription}}
+
+          </div>
+    
+        <!-- </div> -->
       </div>
       <!-- PDF -->
       <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
@@ -28,15 +43,13 @@
         </youtube-player>
       </div>
     </div>
-    <div id="text-desc">
-      <pre>Description:</pre>{{container.userMediaDescription}}
-    </div>
-  </div>
+
+    
 </div>
 
 
 <!--<input id="browse" type="file" onchange="previewFiles()" multiple>-->
-<div id="preview"></div>
+<!-- <div id="preview"></div> -->
 
 </html>
 

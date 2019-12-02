@@ -47,12 +47,12 @@
     <div id="texts">
       <p>
         Media Title:
-      <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
+      <input class="media-title" type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
       </p>
     
        <p>
         Media Description:
-        <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
+        <textarea class="media-description" cols="88" rows="15" [(ngModel)]="this.titleAndDescriptions[i].description"></textarea>
       </p>
     </div>
   </div>

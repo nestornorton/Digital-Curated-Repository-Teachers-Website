@@ -1,7 +1,19 @@
-<div class="search-container">
+<!-- <div class="search-container">
   <label for="typeahead-basic">Search for content by Media Title or Description:</label>
   <input id="typeahead-basic" type="text" class="form-control" [ngbTypeahead]="search" [resultFormatter]="formatter"
          [inputFormatter]="inputValFormatter" (selectItem)="onSearchItemSelection($event)"/>
+</div> -->
+
+
+<div class="flexsearch">
+    <label for="typeahead-basic">Search for content by Media Title or Description:</label>
+		<div class="flexsearch--wrapper">
+			<form class="flexsearch--form">
+				<div class="flexsearch--input-wrapper">
+          <input class="flexsearch--input" type="search" placeholder="search" id="typeahead-basic" [ngbTypeahead]="search" [resultFormatter]="formatter" [inputFormatter]="inputValFormatter" (selectItem)="onSearchItemSelection($event)" />
+				</div>
+			</form>
+		</div>
 </div>
 <!-- <div class="table-container">
   <table class="table">
@@ -24,11 +36,19 @@
   </table>
 </div> -->
 
+<div class="your-post">
+  Your Posts:
+</div>
+
 <div class="post-container">
   <ng-container *ngFor="let post of postList; let i = index">
     <img src="assets/cards1/{{i+1}}.jpg">
     <div class="postLink" id="postid" (click)="onPostIdClick($event)">{{post?._id}}</div>
   </ng-container>
+</div>
+
+<div class="recommendations">
+  Recommendations:
 </div>
 
 <div class="recommendation-container">
