@@ -18,7 +18,7 @@
 
       <!-- Video -->
       <div *ngIf="showContainerInputs[i]">
-        Youtube Video Full Link: <input type="text" #linkInput/>
+        Youtube Video Link: <input type="text" #linkInput/>
         <button (click)="submitVideo(linkInput.value, i)">Submit</button>
       </div>
       <div *ngIf="youtubeLinksArray[i]" id="youtubeContainer">

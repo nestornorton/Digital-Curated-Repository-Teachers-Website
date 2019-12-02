@@ -84,6 +84,20 @@
     margin-right: 20px;
     
   }
+  .postLink {
+    top: 10px;
+    left: 10px; 
+      
+    padding: 5px;
+    margin-left: -240px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 210px;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 220px;
+    visibility: hidden;
+
+  }
 }
 
 .recommendation-container::-webkit-scrollbar {    

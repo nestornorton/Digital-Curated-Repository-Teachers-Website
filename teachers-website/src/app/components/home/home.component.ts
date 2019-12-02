@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         this.PostIDList = response.content;
         this.postList = [];
         this.PostIDList.forEach(async (item) => {
-          this.postList.push(await this.postContentService.getPostById(item.id));
+          this.postList.unshift(await this.postContentService.getPostById(item.id));
         });
 
         console.log('PostList: ', this.postList);
