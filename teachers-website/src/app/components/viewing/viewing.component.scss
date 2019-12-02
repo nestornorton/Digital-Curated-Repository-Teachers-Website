@@ -114,6 +114,22 @@ html {
       width: 100%;
     }
 }
+#pdfEmbed{
+  // border:3px solid green;
+  width: calc(40% - 20px);
+  height:450px;
+  margin: 10px;
+  overflow: scroll;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  padding: 30px;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
 
 #pdf-viewer-container {
   border: groove;
