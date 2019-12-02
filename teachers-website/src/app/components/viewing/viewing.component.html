@@ -1,42 +1,42 @@
 <html>
-    
-
-    <div id="content">
-    <div id="contentInside" *ngFor="let container of contentArray; index as i">
-        <!-- Image -->
-        <div id="imageImbed" *ngIf="container.mediaType.includes('image/')">
+<div id="content">
+  <div id="contentInside" *ngFor="let container of contentArray; index as i">
+    <div id="text-title">
+      <pre>Title:</pre>{{container.userMediaTitle}}
+    </div>
+    <div id="content-display">
+      <!-- Image -->
+      <div id="embedded" *ngIf="container.mediaType.includes('image/')">
         <img [src]="container.mediaObj" alt="Image preview..." style="width: 60%;">
-        </div>
-        <!-- PDF -->
-        <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
+      </div>
+      <!-- PDF -->
+      <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
         <!-- <img src="" height="200" alt="Image preview..." (ready)="previewFile(container)"> -->
-        
+
         <pdf-viewer [src]="container.mediaObj"
                     [render-text]="true"
                     [page]="1"
                     [show-all]="false"
         >
         </pdf-viewer>
-        </div>
-        <!-- Video -->
-        <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
+      </div>
+      <!-- Video -->
+      <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
         <youtube-player
-            [videoId]="container.mediaObj"
-            [playerVars]="">
+          [videoId]="container.mediaObj"
+          [playerVars]="">
         </youtube-player>
-        </div>
-        <!-- <div id="texts">
-            Media Title:
-            <input type="text" [(ngModel)]="this.titleAndDescriptions[i].title"/>
-            Media Description:
-            <input type="text" [(ngModel)]="this.titleAndDescriptions[i].description"/>
-        </div> -->
+      </div>
     </div>
+    <div id="text-desc">
+      <pre>Description:</pre>{{container.userMediaDescription}}
     </div>
+  </div>
+</div>
 
 
-    <!--<input id="browse" type="file" onchange="previewFiles()" multiple>-->
-    <div id="preview"></div>
-    
+<!--<input id="browse" type="file" onchange="previewFiles()" multiple>-->
+<div id="preview"></div>
+
 </html>
 
