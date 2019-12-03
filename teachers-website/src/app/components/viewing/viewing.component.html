@@ -9,6 +9,26 @@
       <div id="embedded" *ngIf="container.mediaType.includes('image/')">
         <img [src]="container.mediaObj" alt="Image preview...">
       </div>
+
+      <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
+        <!-- <img src="" height="200" alt="Image preview..." (ready)="previewFile(container)"> -->
+
+        <pdf-viewer [src]="container.mediaObj"
+                    [render-text]="true"
+                    [page]="1"
+                    [show-all]="false"
+        >
+        </pdf-viewer>
+      </div>
+
+      <!-- Video -->
+      <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
+          <youtube-player
+            [videoId]="container.mediaObj"
+            [playerVars]="">
+          </youtube-player>
+        </div>
+
       <div id="texts">
 
           <div id="text-title">
@@ -25,24 +45,9 @@
         <!-- </div> -->
       </div>
       <!-- PDF -->
-      <div id="pdfEmbed" *ngIf="container.mediaType == 'application/pdf'">
-        <!-- <img src="" height="200" alt="Image preview..." (ready)="previewFile(container)"> -->
-
-        <pdf-viewer [src]="container.mediaObj"
-                    [render-text]="true"
-                    [page]="1"
-                    [show-all]="false"
-        >
-        </pdf-viewer>
-      </div>
       
-      <!-- Video -->
-      <div id="youtubeContainer" *ngIf="container.mediaType == 'LinkID'">
-        <youtube-player
-          [videoId]="container.mediaObj"
-          [playerVars]="">
-        </youtube-player>
-      </div>
+      
+      
     </div>
 
     
