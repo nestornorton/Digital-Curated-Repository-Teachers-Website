@@ -43,7 +43,7 @@
 <div class="post-container">
   <ng-container *ngFor="let post of postList; let i = index">
     <!-- <img src="assets/cards1/{{i+1}}.jpg"> -->
-    <img [src]="post.content[0].mediaObj" alt="Image preview...">
+    <img *ngIf="post?.content[0]?.mediaType?.includes('image/')" [src]="post.content[0].mediaObj" alt="Image preview...">
     <div class="postLink" id="postid" (click)="onPostIdClick($event)">{{post?._id}}</div>
   </ng-container>
 </div>
