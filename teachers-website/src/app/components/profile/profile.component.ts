@@ -8,6 +8,7 @@ import {UserService} from '../../services/user-service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  public username;
 
   constructor(private router: Router, private userService: UserService) {
   }
@@ -16,7 +17,10 @@ export class ProfileComponent implements OnInit {
     if (!this.userService.isLoggedIn) {
       this.router.navigate(['/Login']);
     } else {
+      this.username = this.userService.getStoredLoggedInUsername();
     }
+     
+
   }
 
 }
